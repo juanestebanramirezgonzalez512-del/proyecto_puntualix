@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PUNTUALIX | Contenidos</title>
+  <link rel="icon" href="Inicio/Icono.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* CONFIGURACIÓN GENERAL */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #fff8d6, #ffffff, #ffe5d0);
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    /* FONDO ANIMADO */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.30;
+      z-index: -1;
+      pointer-events: none;
+      animation: moverFondo 8s infinite alternate ease-in-out;
+    }
+
+    body::before {
+      background: #fbff02;
+      top: -120px;
+      left: -100px;
+    }
+
+    body::after {
+      background: #ffd804;
+      bottom: -120px;
+      right: -100px;
+      animation-delay: 2s;
+    }
+
+    @keyframes moverFondo {
+      from { transform: translate(0, 0); }
+      to { transform: translate(80px, 50px); }
+    }
+
+    /* MENÚ */
+    .menu {
+      background: linear-gradient(90deg, #0931e5, #f52c12, #1000f7);
+      padding: 14px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.20);
+      animation: aparecerMenu 0.8s ease;
+    }
+
+    @keyframes aparecerMenu {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .menu ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .menu li {
+      list-style: none;
+    }
+
+    .menu a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .menu a:hover {
+      background: #ffd804;
+      color: #222;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    }
+
+    /* LOGO */
+    .logo-menu {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+      padding: 2px;
+      transition: transform 0.5s ease;
+    }
+
+    .menu a:hover .logo-menu {
+      transform: rotate(360deg) scale(1.20);
+    }
+
+    /* TÍTULO */
+    .titulo {
+      text-align: center;
+      margin: 45px 20px 20px;
+      animation: aparecer 1s ease;
+    }
+
+    .titulo h1 {
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, #0918e5, #1900ff, #ffd000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      animation: brillo 3s infinite alternate;
+    }
+
+    .titulo p {
+      font-size: 18px;
+      font-weight: 600;
+      color: #444;
+      margin-top: 8px;
+    }
+
+    @keyframes brillo {
+      from {
+        filter: drop-shadow(0 0 3px rgba(255,0,0,0.20));
+      }
+      to {
+        filter: drop-shadow(0 0 15px rgba(255,160,0,0.60));
+      }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* PRESENTACIÓN */
+    .intro {
+      width: min(90%, 950px);
+      margin: 35px auto;
+      padding: 35px;
+      text-align: center;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.13);
+      animation: aparecer 1.2s ease;
+    }
+
+    .intro h2 {
+      color: #0944e5;
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .intro p {
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* CARACTERÍSTICAS */
+    .contenidos {
+      width: min(95%, 1100px);
+      margin: 45px auto;
+      text-align: center;
+    }
+
+    .contenidos h2 {
+      color: #0944e5;
+      font-size: 30px;
+      margin-bottom: 25px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .tarjeta {
+      background: rgba(255,255,255,0.90);
+      border-radius: 22px;
+      padding: 30px 22px;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      border: 3px solid transparent;
+      transition: all 0.4s ease;
+      animation: aparecerTarjeta 0.8s ease;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-10px) scale(1.03);
+      border-color: #ff6b00;
+      box-shadow: 0 18px 35px rgba(229,9,9,0.22);
+    }
+
+    .icono {
+      font-size: 50px;
+      margin-bottom: 15px;
+      transition: transform 0.4s ease;
+    }
+
+    .tarjeta:hover .icono {
+      transform: rotate(10deg) scale(1.2);
+    }
+
+    .tarjeta h3 {
+      color: #094fe5;
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .tarjeta p {
+      color: #555;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    @keyframes aparecerTarjeta {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* BOTÓN APLICACIÓN */
+    .boton-app {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+      padding: 13px 25px;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #e50909, #ff6b00);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 7px 20px rgba(229,9,9,0.30);
+      transition: all 0.3s ease;
+    }
+
+    .boton-app:hover {
+      transform: translateY(-5px) scale(1.06);
+      background: linear-gradient(90deg, #0011ff, #ffd000);
+      color: #222;
+    }
+
+    /* SECCIÓN DE LA APLICACIÓN */
+    .app-section {
+      width: min(92%, 1000px);
+      margin: 50px auto;
+      padding: 45px 30px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(31,9,229,0.95), rgba(255,107,0,0.95), rgba(0,17,255,0.95));
+      border-radius: 30px;
+      color: white;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      animation: aparecer 1.3s ease;
+    }
+
+    .app-section h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 15px;
+    }
+
+    .app-section p {
+      max-width: 750px;
+      margin: 0 auto 25px;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .app-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 35px;
+      background: white;
+      color: #e50909;
+      border-radius: 35px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 17px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      transition: all 0.4s ease;
+    }
+
+    .app-button:hover {
+      transform: scale(1.08) translateY(-5px);
+      background: #222;
+      color: #ffd000;
+    }
+
+    /* INFORMACIÓN */
+    .info {
+      width: min(90%, 950px);
+      margin: 45px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .info-box {
+      background: rgba(255,255,255,0.90);
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+      transition: all 0.3s ease;
+    }
+
+    .info-box:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.18);
+    }
+
+    .info-box h3 {
+      color: #e50909;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    /* GALERÍA DE LOS CINCO CONTENIDOS */
+    .galeria-contenidos {
+      width: min(95%, 1100px);
+      margin: 55px auto;
+      text-align: center;
+    }
+
+    .galeria-contenidos h2 {
+      color: #0944e5;
+      font-size: clamp(24px, 4vw, 30px);
+      margin-bottom: 12px;
+    }
+
+    .galeria-contenidos .descripcion {
+      color: #555;
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .contenido-botones {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 0;
+    }
+
+    .contenido-btn {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 25px;
+      background: #555;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .contenido-btn:hover {
+      background: linear-gradient(90deg, #ff0000, #ffd000);
+      color: #222;
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .contenido-btn.active {
+      background: linear-gradient(90deg, #091fe5, #ffd000);
+      color: #222;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .contenido-galeria {
+      width: 100%;
+      min-height: 350px;
+      padding: 20px;
+      background: rgba(255,255,255,0.90);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .contenido-imagen {
+      display: none;
+      max-width: 100%;
+      max-height: 650px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .contenido-imagen.active {
+      display: block;
+      animation: aparecerContenido 0.5s ease;
+    }
+
+    @keyframes aparecerContenido {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .error-imagen {
+      display: none;
+      color: #b00020;
+      font-size: 14px;
+      margin-top: 15px;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 70px;
+      background: linear-gradient(135deg, #171717, #292929);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    footer p {
+      margin: 10px 0;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .social-icons {
+      margin: 25px 0;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 8px;
+      border-radius: 50%;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #ffd000;
+      transform: translateY(-7px) rotate(8deg);
+    }
+
+    .social-icons img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    footer a {
+      color: #ffd000;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #ff6b00;
+      text-decoration: underline;
+    }
+
+    /* BOTÓN VOLVER ARRIBA */
+    .arriba {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e50909;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 22px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.30);
+      transition: 0.3s;
+      z-index: 999;
+    }
+
+    .arriba:hover {
+      background: #ffd000;
+      color: #222;
+      transform: translateY(-5px);
+    }
+
+    /* DISEÑO PARA CELULARES */
+    @media (max-width: 768px) {
+      .menu ul {
+        flex-direction: column;
+      }
+
+      .menu a {
+        width: 100%;
+      }
+
+      .titulo h1 {
+        font-size: 2.8rem;
+      }
+
+      .intro {
+        padding: 25px 15px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .app-section {
+        padding: 35px 20px;
+      }
+
+      .contenido-btn {
+        width: 90%;
+      }
+
+      .contenido-galeria {
+        min-height: 220px;
+        padding: 10px;
+      }
+
+      .contenido-imagen {
+        max-height: 70vh;
+      }
+    }
+  </style>
+</head>
+
+<body id="inicio">
+
+  <!-- MENÚ PRINCIPAL -->
+  <nav class="menu">
+    <ul>
+      <li><a href="Inicio.html">🏠 Inicio</a></li>
+
+      <li>
+        <a href="Nombre_Proyecto.html">
+          <img src="Inicio/LOGO.jpg" class="logo-menu" alt="Logo PUNTUALIX">
+          <span>PUNTUALIX</span>
+        </a>
+      </li>
+
+      <li><a href="Imagen_Corporativa.html">🎨 Imagen Corporativa</a></li>
+      <li><a href="Contenidos.html">📚 Contenidos</a></li>
+      <li><a href="Quienes_Somos.html">👥 Quiénes Somos</a></li>
+      
+    </ul>
+  </nav>
+
+  <!-- TÍTULO -->
+  <section class="titulo">
+    <h1>CONTENIDOS</h1>
+    <p>Conoce más sobre nuestro proyecto PUNTUALIX</p>
+  </section>
+
+  
+
+  <!-- CARACTERÍSTICAS DEL PROYECTO -->
+  <section class="contenidos">
+    <h2>🚀 Características del proyecto</h2>
+
+    <div class="grid">
+
+      <div class="tarjeta">
+        <div class="icono">⏰</div>
+        <h3>Control de llegadas</h3>
+        <p>
+          Permite llevar un registro organizado de las llegadas
+          tarde de los estudiantes.
+        </p>
+      </div>
+
+      <div class="tarjeta">
+        <div class="icono">📊</div>
+        <h3>Seguimiento</h3>
+        <p>
+          Facilita la consulta y el seguimiento de los registros
+          de puntualidad.
+        </p>
+      </div>
+
+      <div class="tarjeta">
+        <div class="icono">📱</div>
+        <h3>Fácil de utilizar</h3>
+        <p>
+          Su diseño busca ofrecer una experiencia sencilla
+          y práctica para la institución.
+        </p>
+      </div>
+
+      <div class="tarjeta">
+        <div class="icono">🎯</div>
+        <h3>Organización</h3>
+        <p>
+          Ayuda a organizar la información relacionada con la
+          puntualidad de los estudiantes.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACCESO A LA APLICACIÓN -->
+  <section class="app-section">
+    <h2>🚀 ¡Conoce PUNTUALIX!</h2>
+
+    <p>
+      Ingresa a nuestra aplicación y conoce cómo funciona
+      el sistema de control de llegadas tarde desarrollado
+      para el proyecto PUNTUALIX.
+    </p>
+
+    <a
+      href="https://puntualix-smart-check.base44.app"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="app-button">
+      🌐 ABRIR APLICACIÓN
+    </a>
+  </section>
+
+  <!-- GALERÍA: CINCO BOTONES Y CINCO IMÁGENES -->
+  <section class="galeria-contenidos" id="galeria-contenidos">
+
+    <h2>📖 Contenidos del proyecto</h2>
+
+  
+    </p>
+
+    <!-- BOTONES -->
+    <div class="contenido-botones">
+      <button type="button" class="contenido-btn active"
+        onclick="mostrarContenido(0)">Contenido 1</button>
+
+      <button type="button" class="contenido-btn"
+        onclick="mostrarContenido(1)">Contenido 2</button>
+
+      <button type="button" class="contenido-btn"
+        onclick="mostrarContenido(2)">Contenido 3</button>
+
+      <button type="button" class="contenido-btn"
+        onclick="mostrarContenido(3)">Contenido 4</button>
+
+      <button type="button" class="contenido-btn"
+        onclick="mostrarContenido(4)">Contenido 5</button>
+    </div>
+
+    <!-- IMÁGENES -->
+    <div class="contenido-galeria">
+
+      <img
+        src="contenidos/C1.jpeg"
+        alt="Contenido 1"
+        class="contenido-imagen active">
+
+      <img
+        src="contenidos/C2.jpeg"
+        alt="Contenido 2"
+        class="contenido-imagen">
+
+      <img
+        src="contenidos/C3.jpeg"
+        alt="Contenido 3"
+        class="contenido-imagen">
+
+      <img
+        src="contenidos/C4.jpeg"
+        alt="Contenido 4"
+        class="contenido-imagen">
+
+      <img
+        src="contenidos/C5.jpeg"
+        alt="Contenido 5"
+        class="contenido-imagen">
+
+    </div>
+
+    <p id="error-imagen" class="error-imagen" role="status"></p>
+
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>
+      Conoce más de nosotros...
+      <strong>¡Visita nuestras Redes Sociales!</strong>
+    </p>
+
+    <div class="social-icons">
+
+      <a href="https://www.facebook.com/?locale=es_LA"
+        target="_blank" rel="noopener noreferrer">
+        <img src="Redes Sociales/facebook.png" alt="Facebook">
+      </a>
+
+      <a href="https://www.google.com/?hl=es"
+        target="_blank" rel="noopener noreferrer">
+        <img src="Redes Sociales/Google.png" alt="Google">
+      </a>
+
+      <a href="https://www.instagram.com/"
+        target="_blank" rel="noopener noreferrer">
+        <img src="Redes Sociales/Instagram.png" alt="Instagram">
+      </a>
+
+      <a href="https://www.whatsapp.com/"
+        target="_blank" rel="noopener noreferrer">
+        <img src="Redes Sociales/Whatsapp.png" alt="WhatsApp">
+      </a>
+
+    </div>
+
+    <p>
+      &copy; 2026 - Educación Media del Colegio Venecia IED.
+      Todos los derechos reservados.
+      |
+      <a
+        href="https://www.mintic.gov.co/portal/inicio/Secciones-auxiliares/Politicas/2627:Politicas-de-Privacidad-y-Condiciones-de-Uso"
+        target="_blank" rel="noopener noreferrer">
+        Política de Privacidad
+      </a>
+      |
+      <a
+        href="https://www.sic.gov.co/politica-privacidad"
+        target="_blank" rel="noopener noreferrer">
+        Términos y Condiciones
+      </a>
+    </p>
+  </footer>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <a href="#inicio" class="arriba" title="Volver arriba">↑</a>
+
+  <!-- JAVASCRIPT DE LOS CINCO CONTENIDOS -->
+  <script>
+    function mostrarContenido(indice) {
+      const imagenes = document.querySelectorAll('.contenido-imagen');
+      const botones = document.querySelectorAll('.contenido-btn');
+
+      if (indice < 0 || indice >= imagenes.length) {
+        return;
+      }
+
+      imagenes.forEach((imagen, i) => {
+        imagen.classList.toggle('active', i === indice);
+      });
+
+      botones.forEach((boton, i) => {
+        boton.classList.toggle('active', i === indice);
+      });
+
+      const imagenSeleccionada = imagenes[indice];
+      const mensaje = document.getElementById('error-imagen');
+
+      if (mensaje) {
+        mensaje.style.display = 'none';
+        mensaje.textContent = '';
+      }
+
+      if (imagenSeleccionada.dataset.error === 'true' && mensaje) {
+        mensaje.textContent =
+          'No se encontró la imagen del Contenido ' +
+          (indice + 1) +
+          '. Revisa el nombre del archivo y su carpeta.';
+        mensaje.style.display = 'block';
+      }
+    }
+
+    /* Detectar imágenes que no cargan */
+    document.querySelectorAll('.contenido-imagen').forEach((imagen, indice) => {
+      imagen.addEventListener('error', function() {
+        this.dataset.error = 'true';
+
+        if (this.classList.contains('active')) {
+          const mensaje = document.getElementById('error-imagen');
+
+          mensaje.textContent =
+            'No se pudo cargar CONTENIDO' +
+            (indice + 1) +
+            '. Revisa que el archivo exista en la carpeta PUNTUALIX y que su extensión sea correcta.';
+
+          mensaje.style.display = 'block';
+        }
+      });
+
+      imagen.addEventListener('load', function() {
+        this.dataset.error = 'false';
+
+        if (this.classList.contains('active')) {
+          const mensaje = document.getElementById('error-imagen');
+          mensaje.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1065 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Quiénes Somos | PUNTUALIX</title>
+  <link rel="icon" href="Inicio/Icono.png" type="image/png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #fff8d6, #ffffff, #ffe5d0);
+      color: #222;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* FONDO ANIMADO */
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.30;
+      z-index: -1;
+      pointer-events: none;
+      animation: moverFondo 8s infinite alternate ease-in-out;
+    }
+
+    body::before {
+      background: #fffb02;
+      top: -120px;
+      left: -100px;
+    }
+
+    body::after {
+      background: #ffd804;
+      bottom: -120px;
+      right: -100px;
+      animation-delay: 2s;
+    }
+
+    @keyframes moverFondo {
+      from { transform: translate(0, 0); }
+      to { transform: translate(80px, 50px); }
+    }
+
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes aparecerMenu {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes aparecerDetalle {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MENÚ */
+
+    .menu {
+      background: linear-gradient(90deg, #0931e5, #f52c12, #1000f7);
+      padding: 14px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.20);
+      animation: aparecerMenu 0.8s ease;
+    }
+
+    .menu ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .menu li {
+      list-style: none;
+    }
+
+    .menu a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .menu a:hover {
+      background: #ffd804;
+      color: #222;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .logo-menu {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+      padding: 2px;
+      transition: transform 0.5s ease;
+    }
+
+    .menu a:hover .logo-menu {
+      transform: rotate(360deg) scale(1.20);
+    }
+
+    /* TÍTULO */
+
+    .titulo {
+      text-align: center;
+      margin: 35px 20px 10px;
+      animation: aparecer 1s ease;
+    }
+
+    .titulo h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, #090de5, #002fff, #ffd000);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 3px;
+    }
+
+    .titulo p {
+      font-size: 18px;
+      font-weight: 600;
+      color: #444;
+      margin-top: 5px;
+    }
+
+    /* PRESENTACIÓN */
+
+    .presentacion {
+      text-align: center;
+      width: min(90%, 900px);
+      margin: 40px auto;
+      padding: 35px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      animation: aparecer 1.2s ease;
+    }
+
+    .presentacion h2 {
+      color: #0961e5;
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .presentacion p {
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    /* ESTILOS DE INTEGRANTES CONSERVADOS */
+
+    .integrantes {
+      width: min(92%, 1050px);
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 35px;
+      align-items: stretch;
+    }
+
+    .integrante {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 35px 28px;
+      border-radius: 28px;
+      text-align: center;
+      border: 2px solid rgba(255, 150, 0, 0.25);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.13);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: aparecer 1s ease both;
+    }
+
+    .integrante:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .integrante::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -75px;
+      left: 50%;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffcf00, #ff6b00, #f52c12);
+      opacity: 0.16;
+      transform: translateX(-50%);
+      transition: transform 0.5s ease;
+    }
+
+    .integrante:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 22px 45px rgba(229, 75, 0, 0.20);
+    }
+
+    .integrante:hover::before {
+      transform: translateX(-50%) scale(1.35);
+    }
+
+    .etiqueta-integrante {
+      display: inline-block;
+      padding: 8px 16px;
+      margin-bottom: 22px;
+      border-radius: 30px;
+      color: white;
+      background: linear-gradient(90deg, #f52c12, #ff8c00);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .foto {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      margin: 0 auto 22px;
+      padding: 6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0918e5, #ff6b00, #ffd000);
+      box-shadow: 0 8px 25px rgba(229, 9, 9, 0.25);
+      transition: transform 0.4s ease;
+    }
+
+    .integrante:hover .foto {
+      transform: scale(1.06) rotate(3deg);
+    }
+
+    .foto img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      border: 4px solid white;
+      border-radius: 50%;
+      background: #eeeeee;
+    }
+
+    .integrante h2 {
+      color: #0918e5;
+      font-size: clamp(19px, 2.2vw, 25px);
+      margin-bottom: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .integrante h3 {
+      color: #ff6b00;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .integrante > p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .boton-perfil {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #f52c12, #ff8c00, #ffd000);
+      color: white;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(245, 80, 0, 0.20);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .boton-perfil:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 9px 20px rgba(245, 80, 0, 0.30);
+    }
+
+    .boton-perfil:focus-visible {
+      outline: 3px solid #2447d8;
+      outline-offset: 4px;
+    }
+
+    .detalle-perfil {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 16px;
+      background: #fff7e8;
+      border-left: 4px solid #ff7800;
+      text-align: left;
+    }
+
+    .detalle-perfil.visible {
+      display: block;
+      animation: aparecerDetalle 0.35s ease;
+    }
+
+    .detalle-perfil p {
+      color: #444;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* GALERÍA: LAS DOS FOTOS VAN PRIMERO */
+
+    .galeria {
+      width: min(92%, 1050px);
+      margin: 65px auto;
+      text-align: center;
+      animation: aparecer 1s ease;
+    }
+
+    .galeria h2 {
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 800;
+      color: #0918e5;
+      margin-bottom: 10px;
+    }
+
+    .galeria .subtitulo-galeria {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 0 auto 30px;
+      max-width: 650px;
+    }
+
+    .galeria-contenedor {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .galeria-tarjeta {
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      border: 2px solid rgba(255, 140, 0, 0.25);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .galeria-tarjeta:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 18px 35px rgba(229, 75, 0, 0.20);
+    }
+
+    .galeria-tarjeta img {
+      display: block;
+      width: 100%;
+      height: 340px;
+      object-fit: contain;
+      background: #fffaf0;
+      border-radius: 16px;
+    }
+
+    .galeria-etiqueta {
+      padding: 16px 10px 10px;
+      color: #e53935;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .galeria-etiqueta span {
+      display: block;
+      margin-top: 4px;
+      color: #666;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* LOS DOS BOTONES */
+
+    .botones-portafolio {
+      width: min(92%, 900px);
+      margin: 35px auto;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .boton-portafolio {
+      border: none;
+      border-radius: 30px;
+      padding: 14px 25px;
+      background: linear-gradient(90deg, #f52c12, #ff8c00, #ffd000);
+      color: white;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(245, 80, 0, 0.22);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .boton-portafolio:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(245, 80, 0, 0.30);
+    }
+
+    .boton-portafolio:focus-visible {
+      outline: 3px solid #2447d8;
+      outline-offset: 4px;
+    }
+
+    /* PANELES DE IMÁGENES */
+
+    .panel-portafolio {
+      display: none;
+      width: min(92%, 1050px);
+      margin: 25px auto 45px;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid rgba(255, 140, 0, 0.3);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .panel-portafolio.visible {
+      display: block;
+      animation: aparecerDetalle 0.35s ease;
+    }
+
+    .panel-portafolio h2 {
+      text-align: center;
+      color: #0918e5;
+      margin-bottom: 20px;
+      font-size: 25px;
+    }
+
+    .imagenes-portafolio {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .imagen-portafolio {
+      min-width: 0;
+      text-align: center;
+      padding: 12px;
+      border-radius: 18px;
+      background: #fff8e8;
+      border: 1px solid #ffe0a3;
+    }
+
+    .imagen-portafolio img {
+      display: block;
+      width: 100%;
+      height: 320px;
+      object-fit: contain;
+      background: white;
+      border-radius: 12px;
+    }
+
+    .imagen-portafolio p {
+      margin-top: 12px;
+      color: #e53935;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* INFORMACIÓN DEL PROYECTO */
+
+    .informacion {
+      width: min(90%, 1000px);
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .info-card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s;
+    }
+
+    .info-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .info-icon {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .info-card h3 {
+      color: #e50909;
+      margin-bottom: 10px;
+    }
+
+    .info-card p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* MISIÓN Y VISIÓN */
+
+    .mision-vision {
+      width: min(90%, 1000px);
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .mision,
+    .vision {
+      padding: 35px;
+      border-radius: 25px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, #0145ff, #ff0000);
+    }
+
+    .mision h2,
+    .vision h2 {
+      margin-bottom: 15px;
+      font-size: 28px;
+    }
+
+    .mision p,
+    .vision p {
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* SLOGAN */
+
+    .slogan {
+      width: min(90%, 1000px);
+      margin: 50px auto;
+      padding: 40px 25px;
+      text-align: center;
+      border-radius: 25px;
+      background: linear-gradient(90deg, #092ae5, #ff6b00, #0400ff);
+      color: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      transition: transform 0.3s ease;
+    }
+
+    .slogan:hover {
+      transform: translateY(-5px);
+    }
+
+    .slogan h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .slogan p {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.8;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 70px;
+      background: linear-gradient(135deg, #171717, #292929);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    footer p {
+      margin: 10px 0;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .social-icons {
+      margin: 25px 0;
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 8px;
+      border-radius: 50%;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #ffd000;
+      transform: translateY(-7px) rotate(8deg);
+    }
+
+    .social-icons img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    footer a {
+      color: #ffd000;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* VOLVER ARRIBA */
+
+    .arriba {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e50909;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 22px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.30);
+      transition: 0.3s;
+      z-index: 999;
+    }
+
+    .arriba:hover {
+      background: #ffd000;
+      color: #222;
+      transform: translateY(-5px);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 768px) {
+      .menu ul {
+        flex-direction: column;
+      }
+
+      .menu li {
+        width: 100%;
+      }
+
+      .menu a {
+        width: 100%;
+      }
+
+      .titulo h1 {
+        font-size: 2.8rem;
+        letter-spacing: 1px;
+      }
+
+      .presentacion {
+        padding: 25px 15px;
+      }
+
+      .presentacion h2 {
+        font-size: 25px;
+      }
+
+      .presentacion p {
+        font-size: 14px;
+      }
+
+      .integrantes,
+      .informacion,
+      .mision-vision,
+      .galeria-contenedor,
+      .imagenes-portafolio {
+        grid-template-columns: 1fr;
+      }
+
+      .integrantes {
+        max-width: 450px;
+      }
+
+      .integrante {
+        padding: 30px 20px;
+      }
+
+      .foto {
+        width: 165px;
+        height: 165px;
+      }
+
+      .galeria-tarjeta img {
+        height: 300px;
+      }
+
+      .imagen-portafolio img {
+        height: 280px;
+      }
+
+      .slogan p {
+        font-size: 15px;
+      }
+
+      .arriba {
+        right: 15px;
+        bottom: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body id="inicio">
+
+  <!-- MENÚ PRINCIPAL -->
+
+  <nav class="menu">
+    <ul>
+      <li><a href="Inicio.html">🏠 Inicio</a></li>
+
+      <li>
+        <a href="Nombre_Proyecto.html">
+          <img src="Inicio/LOGO.JPG" class="logo-menu" alt="Logo PUNTUALIX">
+          <span>PUNTUALIX</span>
+        </a>
+      </li>
+
+      <li><a href="Imagen_Corporativa.html">🎨 Imagen Corporativa</a></li>
+      <li><a href="Contenidos.html">📚 Contenidos</a></li>
+      <li><a href="Quienes_Somos.html" aria-current="page">👥 Quiénes Somos</a></li>
+     
+    </ul>
+  </nav>
+
+  <!-- TÍTULO -->
+
+  <section class="titulo">
+    <h1>¿QUIÉNES SOMOS?</h1>
+    <p>Conoce a las personas detrás de PUNTUALIX 🚀</p>
+  </section>
+
+  <!-- PRESENTACIÓN -->
+
+  <section class="presentacion">
+    <h2>¡Conoce nuestro equipo! 🚀</h2>
+
+    <p>
+      Somos dos estudiantes del Colegio Venecia IED
+      interesados en utilizar la tecnología para crear
+      soluciones que ayuden a nuestra comunidad educativa.
+    </p>
+
+    <br>
+
+    <p>
+      A través de PUNTUALIX buscamos mejorar el control
+      y seguimiento de las llegadas tarde, promoviendo
+      la responsabilidad, la organización y el buen uso
+      del tiempo.
+    </p>
+  </section>
+
+  <!-- INTEGRANTES: SIN AGREGAR TARJETAS -->
+
+  <!-- PRIMERO: LAS DOS FOTOS ORIGINALES -->
+
+  <section class="galeria" aria-label="Galería de imágenes de PUNTUALIX">
+
+    <h2>Nuestro proyecto en imágenes 📸</h2>
+
+    <p class="subtitulo-galeria">
+      Conoce más sobre el trabajo y las actividades que hacen
+      parte de nuestro proyecto PUNTUALIX.
+    </p>
+
+    <div class="galeria-contenedor">
+
+      <article class="galeria-tarjeta">
+        <img
+          src="Quienes somos/juani.jpeg"
+          alt="Primera imagen del proyecto PUNTUALIX"
+          loading="lazy">
+
+        <div class="galeria-etiqueta">
+          
+          <span></span>
+        </div>
+      </article>
+
+      <article class="galeria-tarjeta">
+        <img
+          src="Quienes somos/herrerai.jpeg"
+          alt="Segunda imagen del proyecto PUNTUALIX"
+          loading="lazy">
+
+        <div class="galeria-etiqueta">
+          
+          <span></span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SEGUNDO: LOS DOS BOTONES -->
+
+  <section class="botones-portafolio" aria-label="Portafolio del proyecto">
+
+    <button
+      type="button"
+      class="boton-portafolio"
+      aria-expanded="false"
+      aria-controls="panel-portada"
+      onclick="mostrarPortafolio('panel-portada', this)">
+      📰 Portada de revista
+    </button>
+
+    <button
+      type="button"
+      class="boton-portafolio"
+      aria-expanded="false"
+      aria-controls="panel-curriculo"
+      onclick="mostrarPortafolio('panel-curriculo', this)">
+      📄 Currículo
+    </button>
+
+  </section>
+
+  <!-- PORTADA DE REVISTA: DOS FOTOS -->
+
+  <section class="panel-portafolio" id="panel-portada">
+    <h2>Portada de revista</h2>
+
+    <div class="imagenes-portafolio">
+
+      <article class="imagen-portafolio">
+        <img
+          src="Quienes somos/juanp.jpg"
+          alt="Primera portada de revista"
+          loading="lazy">
+        <p>Portada 1</p>
+      </article>
+
+      <article class="imagen-portafolio">
+        <img
+          src="Quienes somos/herrerap.jpg"
+          alt="Segunda portada de revista"
+          loading="lazy">
+        <p>Portada 2</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CURRÍCULO: DOS FOTOS -->
+
+  <section class="panel-portafolio" id="panel-curriculo">
+    <h2>Currículo</h2>
+
+    <div class="imagenes-portafolio">
+
+      <article class="imagen-portafolio">
+        <img
+          src="Quienes somos/juan.jpeg"
+          alt="Primera imagen del currículo"
+          loading="lazy">
+        <p>Currículo 1</p>
+      </article>
+
+      <article class="imagen-portafolio">
+        <img
+          src="Quienes somos/herrera.jpeg"
+          alt="Segunda imagen del currículo"
+          loading="lazy">
+        <p>Currículo 2</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- SLOGAN -->
+
+  <section class="slogan">
+    <h2>PUNTUALIX</h2>
+
+    <p>
+      “CADA MINUTO CUENTA, CADA LLEGADA A TIEMPO
+      CONSTRUYE TU FUTURO”.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>
+      Conoce más de nosotros...
+      <strong>¡Visita nuestras Redes Sociales!</strong>
+    </p>
+
+    <div class="social-icons">
+      <a href="https://www.facebook.com/?locale=es_LA"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Facebook">
+        <img src="Redes Sociales/facebook.png" alt="Facebook">
+      </a>
+
+      <a href="https://www.google.com/?hl=es"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Google">
+        <img src="Redes Sociales/Google.png" alt="Google">
+      </a>
+
+      <a href="https://www.instagram.com/"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Instagram">
+        <img src="Redes Sociales/Instagram.png" alt="Instagram">
+      </a>
+
+      <a href="https://www.flickr.com/"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Flickr">
+        <img src="Redes Sociales/Redes-Sociales---Flickr.png" alt="Flickr">
+      </a>
+    </div>
+
+    <p>
+      &copy; 2026 - Educación Media del Colegio Venecia IED.
+      Todos los derechos reservados.
+    </p>
+
+    <p>
+      <a
+        href="https://www.mintic.gov.co/portal/inicio/Secciones-auxiliares/Politicas/2627:Politicas-de-Privacidad-y-Condiciones-de-Uso"
+        target="_blank" rel="noopener noreferrer">
+        Política de Privacidad
+      </a>
+
+      &nbsp; | &nbsp;
+
+      <a
+        href="https://www.sic.gov.co/politica-privacidad"
+        target="_blank" rel="noopener noreferrer">
+        Términos y Condiciones
+      </a>
+    </p>
+  </footer>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+
+  <a href="#inicio"
+     class="arriba"
+     title="Volver arriba"
+     aria-label="Volver arriba">
+    ↑
+  </a>
+
+  <!-- FUNCIONAMIENTO DE LOS BOTONES -->
+
+  <script>
+    function mostrarPortafolio(id, boton) {
+      const panel = document.getElementById(id);
+
+      if (!panel) return;
+
+      const estabaVisible = panel.classList.contains("visible");
+
+      // Cerrar los paneles y actualizar los botones.
+      document.querySelectorAll(".panel-portafolio").forEach(function (elemento) {
+        elemento.classList.remove("visible");
+      });
+
+      document.querySelectorAll(".boton-portafolio").forEach(function (elemento) {
+        elemento.setAttribute("aria-expanded", "false");
+      });
+
+      // Mostrar el panel seleccionado.
+      if (!estabaVisible) {
+        panel.classList.add("visible");
+        boton.setAttribute("aria-expanded", "true");
+
+        panel.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
+```

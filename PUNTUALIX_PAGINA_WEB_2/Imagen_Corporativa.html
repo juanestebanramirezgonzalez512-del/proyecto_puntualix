@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUNTUALIX | Imagen Corporativa</title>
+  <link rel="icon" href="Inicio/Icono.png" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #fff8d6, #ffffff, #ffe5d0);
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.30;
+      z-index: -1;
+      pointer-events: none;
+      animation: moverFondo 8s infinite alternate ease-in-out;
+    }
+
+    body::before {
+      background: #f9fd05;
+      top: -120px;
+      left: -100px;
+    }
+
+    body::after {
+      background: #ffd804;
+      bottom: -120px;
+      right: -100px;
+      animation-delay: 2s;
+    }
+
+    @keyframes moverFondo {
+      from { transform: translate(0, 0); }
+      to { transform: translate(80px, 50px); }
+    }
+
+    /* MENÚ */
+    .menu {
+      background: linear-gradient(90deg, #0931e5, #f52c12, #1000f7);
+      padding: 14px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.20);
+      animation: aparecerMenu 0.8s ease;
+    }
+
+    @keyframes aparecerMenu {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .menu ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .menu a:hover {
+      background: #ffd804;
+      color: #222;
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .logo-menu {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: white;
+      padding: 2px;
+      transition: transform 0.5s ease;
+    }
+
+    .menu a:hover .logo-menu {
+      transform: rotate(360deg) scale(1.20);
+    }
+
+    /* TÍTULO */
+    .titulo {
+      text-align: center;
+      margin: 40px 20px 20px;
+      animation: aparecer 1s ease;
+    }
+
+    .titulo h1 {
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, #090de5, #2600ff, #ffd000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      animation: brillo 3s infinite alternate;
+    }
+
+    @keyframes brillo {
+      from { filter: drop-shadow(0 0 3px rgba(255,0,0,0.20)); }
+      to { filter: drop-shadow(0 0 15px rgba(255,160,0,0.60)); }
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* BANNERS ANIMADOS */
+    .slideshow-container {
+      width: min(90%, 1000px);
+      position: relative;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      border: 5px solid white;
+    }
+
+    .slides {
+      display: none;
+      width: 100%;
+      height: auto;
+      animation: zoom 1s ease;
+    }
+
+    @keyframes zoom {
+      from { opacity: 0; transform: scale(1.08); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* GALERÍA ÚNICA */
+    .gallery-section {
+      width: min(95%, 1100px);
+      margin: 45px auto;
+      text-align: center;
+    }
+
+    .gallery-section h2 {
+      font-size: clamp(22px, 4vw, 30px);
+      color: #1f09e5;
+      margin-bottom: 20px;
+    }
+
+    .gallery-container {
+      width: 100%;
+      min-height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      background: rgba(255,255,255,0.88);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+
+    .gallery-item {
+      display: none;
+      width: 100%;
+      animation: aparecerImagen 0.6s ease;
+    }
+
+    .gallery-item.active {
+      display: block;
+    }
+
+    .gallery-item img {
+      max-width: 100%;
+      max-height: 650px;
+      width: auto;
+      height: auto;
+      display: block;
+      margin: auto;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+      object-fit: contain;
+    }
+
+    .gallery-item iframe {
+      display: block;
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 15px;
+      background: white;
+    }
+
+    @keyframes aparecerImagen {
+      from { opacity: 0; transform: scale(0.96) translateY(12px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* 11 BOTONES */
+    .gallery-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .gallery-buttons button {
+      cursor: pointer;
+      padding: 11px 18px;
+      border: none;
+      border-radius: 25px;
+      background: #555;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-buttons button:hover {
+      background: linear-gradient(90deg, #ff0000, #ffd000);
+      color: #222;
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.20);
+    }
+
+    .gallery-buttons button.active {
+      background: linear-gradient(90deg, #091fe5, #eef104);
+      color: #222;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(229,9,9,0.30);
+    }
+
+    /* PIE DE PÁGINA */
+    footer {
+      margin-top: 70px;
+      background: linear-gradient(135deg, #171717, #292929);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    footer p {
+      margin: 10px 0;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .social-icons { margin: 25px 0; }
+
+    .social-icons a {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 8px;
+      border-radius: 50%;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #ffd000;
+      transform: translateY(-7px) rotate(8deg);
+    }
+
+    .social-icons img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    footer a {
+      color: #ffd000;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover {
+      color: #ff6b00;
+      text-decoration: underline;
+    }
+
+    /* BOTÓN VOLVER ARRIBA */
+    .arriba {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e50909;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 22px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.30);
+      transition: 0.3s;
+      z-index: 999;
+    }
+
+    .arriba:hover {
+      background: #ffd000;
+      color: #222;
+      transform: translateY(-5px);
+    }
+
+    /* ADAPTACIÓN A CELULARES */
+    @media (max-width: 768px) {
+      .menu ul { flex-direction: column; }
+      .menu a { width: 100%; }
+      .titulo h1 { font-size: 2.8rem; }
+      .gallery-container { min-height: 220px; }
+      .gallery-item iframe { height: 420px; }
+      .gallery-buttons button { width: 100%; }
+    }
+  </style>
+</head>
+
+<body id="inicio">
+
+  <!-- MENÚ ORIGINAL -->
+  <nav class="menu">
+    <ul>
+      <li><a href="Inicio.html">🏠 Inicio</a></li>
+
+      <li>
+        <a href="Nombre_Proyecto.html">
+          <img src="Inicio/LOGO.jpg" class="logo-menu" alt="Logo PUNTUALIX">
+          <span>PUNTUALIX</span>
+        </a>
+      </li>
+
+      <li><a href="Imagen_Corporativa.html">🎨 Imagen Corporativa</a></li>
+      <li><a href="Contenidos.html">📚 Contenidos</a></li>
+      <li><a href="Quienes_Somos.html">👥 Quiénes Somos</a></li>
+   
+    </ul>
+  </nav>
+
+  <!-- TÍTULO -->
+  <section class="titulo">
+    <h1>PUNTUALIX</h1>
+  </section>
+
+  <!-- BANNERS -->
+  <div class="slideshow-container" id="banner-slideshow">
+    <img src="Banners/Banner3.jpg" class="slides" alt="Banner PUNTUALIX">
+    <img src="Banners/Banner1.jpg" class="slides" alt="Banner PUNTUALIX">
+    <img src="Banners/Banner2.jpg" class="slides" alt="Banner PUNTUALIX">
+  </div>
+
+  <!-- GALERÍA CON LOS 11 BOTONES -->
+  <section class="gallery-section">
+    <h2>🎨 Imagen Corporativa de PUNTUALIX</h2>
+
+    <div class="gallery-container">
+
+      <!-- 1. PRESENTACIÓN ANIMADA DE GENIALLY -->
+      <div class="gallery-item active">
+        <iframe
+          src="https://view.genially.com/6ab1a21c10065d2363a57242"
+          title="Presentación animada de PUNTUALIX"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- 2. MANUAL DE IMAGEN CORPORATIVA -->
+      <div class="gallery-item">
+        <img
+          src="Imagen_Corporativa/IMAGEN_CORPORATIVA.png"
+          alt="Manual de imagen corporativa de PUNTUALIX">
+      </div>
+
+      <!-- 3. LOGOTIPO -->
+      <div class="gallery-item">
+        <img
+          src="Imagen_Corporativa/logo.jpeg"
+          alt="Logotipo de PUNTUALIX">
+      </div>
+
+      <!-- 4. PERSONAJE -->
+      <div class="gallery-item">
+        <img
+          src="Imagen_Corporativa/personaje.jpeg"
+          alt="Personaje o mascota de PUNTUALIX">
+      </div>
+
+      <!-- 5. PROCESO DEL LOGOTIPO -->
+      <div class="gallery-item">
+        <img
+          src="Imagen Corporativa/proceso-logotipo.jpeg"
+          alt="Proceso de creación del logotipo">
+      </div>
+
+      <!-- 6. VISIÓN -->
+      <div class="gallery-item">
+        <img
+          src="Imagen_Corporativa/vision.jpeg"
+          alt="Visión del proyecto PUNTUALIX">
+      </div>
+
+      <!-- 7. MISIÓN -->
+      <div class="gallery-item">
+        <img
+          src="Imagen_Corporativa/mision.jpeg"
+          alt="Misión del proyecto PUNTUALIX">
+      </div>
+
+      <!-- 8. SLOGAN -->
+      <div class="gallery-item">
+        <img
+          src="Imagen_Corporativa/eslogan.jpeg"
+          alt="Slogan de PUNTUALIX">
+      </div>
+
+      <!-- 9. VALORES DEL PROYECTO -->
+      <div class="gallery-item">
+        <img
+          src="Imagen_Corporativa/valores.jpeg"
+          alt="Valores del proyecto PUNTUALIX">
+      </div>
+
+      <!-- 10. COLORES CORPORATIVOS -->
+      <div class="gallery-item">
+        <img
+          src="Imagen_Corporativa/colores.jpeg"
+          alt="Colores corporativos de PUNTUALIX">
+      </div>
+
+      <!-- 11. INFOGRAFÍA DEL PROYECTO -->
+      <div class="gallery-item">
+        <img
+          src="Imagen Corporativa/infografia-proyecto.jpeg"
+          alt="Infografía del proyecto PUNTUALIX">
+      </div>
+
+    </div>
+
+    <!-- LOS 11 BOTONES -->
+    <div class="gallery-buttons">
+      <button class="active" onclick="mostrarImagen(0)">🎬 Presentación</button>
+      <button onclick="mostrarImagen(1)">📘 Manual de imagen corporativa</button>
+      <button onclick="mostrarImagen(2)">🕒 Logotipo</button>
+      <button onclick="mostrarImagen(3)">🏃 Personaje</button>
+      <button onclick="mostrarImagen(4)">✏️ Proceso logotipo</button>
+      <button onclick="mostrarImagen(5)">🔭 Visión</button>
+      <button onclick="mostrarImagen(6)">🎯 Misión</button>
+      <button onclick="mostrarImagen(7)">💬 Eslogan</button>
+      <button onclick="mostrarImagen(8)">⭐ Valores del proyecto</button>
+      <button onclick="mostrarImagen(9)">🎨 Colores corporativos</button>
+      <button onclick="mostrarImagen(10)">📊 Infografía del proyecto</button>
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>
+      Conoce más de nosotros...
+      <strong>¡Visita nuestras Redes Sociales!</strong>
+    </p>
+
+    <div class="social-icons">
+      <a href="https://www.facebook.com/?locale=es_LA" target="_blank" rel="noopener noreferrer">
+        <img src="Redes Sociales/facebook.png" alt="Facebook">
+      </a>
+
+      <a href="https://www.google.com/?hl=es" target="_blank" rel="noopener noreferrer">
+        <img src="Redes Sociales/Google.png" alt="Google">
+      </a>
+
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+        <img src="Redes Sociales/Instagram.png" alt="Instagram">
+      </a>
+
+      <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer">
+        <img src="Redes Sociales/Whatsapp.png" alt="WhatsApp">
+      </a>
+    </div>
+
+    <p>
+      &copy; 2026 - Educación Media del Colegio Venecia IED.
+      Todos los derechos reservados.
+      |
+      <a href="https://www.mintic.gov.co/portal/inicio/Secciones-auxiliares/Politicas/2627:Politicas-de-Privacidad-y-Condiciones-de-Uso"
+        target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
+      |
+      <a href="https://www.sic.gov.co/politica-privacidad"
+        target="_blank" rel="noopener noreferrer">Términos y Condiciones</a>
+    </p>
+  </footer>
+
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <a href="#inicio" class="arriba" title="Volver arriba">↑</a>
+
+  <script>
+    /* BANNERS ANIMADOS */
+    function iniciarSlideshow(containerId, intervalo) {
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(
+        `#${containerId} .slides`
+      );
+
+      if (!slides.length) return;
+
+      function showSlides() {
+        slides.forEach(slide => {
+          slide.style.display = "none";
+        });
+
+        slideIndex++;
+
+        if (slideIndex > slides.length) {
+          slideIndex = 1;
+        }
+
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, intervalo);
+      }
+
+      showSlides();
+    }
+
+    iniciarSlideshow("banner-slideshow", 3000);
+
+    /* CAMBIAR EL CONTENIDO DE LOS 11 BOTONES */
+    const galleryItems = Array.from(
+      document.querySelectorAll(".gallery-item")
+    );
+
+    const galleryButtons = Array.from(
+      document.querySelectorAll(".gallery-buttons button")
+    );
+
+    function mostrarImagen(indice) {
+      if (!galleryItems[indice]) return;
+
+      galleryItems.forEach((item, i) => {
+        item.classList.toggle("active", i === indice);
+      });
+
+      galleryButtons.forEach((button, i) => {
+        button.classList.toggle("active", i === indice);
+      });
+    }
+
+    /* PRIMER BOTÓN ACTIVO AL ABRIR LA PÁGINA */
+    mostrarImagen(0);
+  </script>
+
+</body>
+</html>
